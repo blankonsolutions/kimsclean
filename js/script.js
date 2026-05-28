@@ -72,22 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. File upload name display
-    const fileInputs = document.querySelectorAll('.file-upload input[type="file"]');
-    fileInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            const label = this.nextElementSibling;
-            if(this.files && this.files.length > 0) {
-                label.innerHTML = `<i class="ri-check-line"></i> ${this.files[0].name}`;
-                label.style.borderColor = 'var(--primary)';
-                label.style.color = '#fff';
-            } else {
-                label.innerHTML = `<i class="ri-image-add-line"></i> 사진 등록`;
-                label.style.borderColor = '#444';
-                label.style.color = '#a3a3a3';
-            }
-        });
-    });
 
     // 6. Dynamic Gallery Auto-Loader
     // 사용법: index.html이 있는 폴더에 image/gallery/ 폴더를 만들고
