@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Mobile Menu Toggle
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
-    
+
     if (mobileBtn) {
         mobileBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
@@ -51,19 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             navLinks.classList.remove('active'); // Close mobile menu if open
-            if(mobileBtn) {
+            if (mobileBtn) {
                 const icon = mobileBtn.querySelector('i');
                 if (icon) {
                     icon.classList.remove('ri-close-line');
                     icon.classList.add('ri-menu-line');
                 }
             }
-            
+
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
+            if (targetId === '#') return;
+
             const targetElement = document.querySelector(targetId);
-            if(targetElement) {
+            if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
@@ -82,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const basePath = 'image/gallery/';
         const maxImages = 50; // 최대 검사할 이미지 개수
         let loadedCount = 0;
-        
+
         // 로컬 이미지가 없을 경우를 대비한 기존 정적 이미지 백업
         const fallbackItems = Array.from(galleryGrid.children);
-        
+
         function checkAndAddImage(index) {
             if (index > maxImages) {
                 if (loadedCount === 0) {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = new Image();
                 img.src = imgSrc;
 
-                img.onload = function() {
+                img.onload = function () {
                     // 첫 이미지를 성공적으로 불러오면 기존 샘플 이미지 비우기
                     if (loadedCount === 0) {
                         galleryGrid.innerHTML = '';
@@ -126,14 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${imgSrc}" alt="현장사진 ${index}">
                         <div class="gallery-overlay"><span>현장 복원 작업 ${index}</span></div>
                     `;
-                    
+
                     galleryGrid.appendChild(galleryItem);
-                    
+
                     // 다음 이미지(index + 1) 검사 시작
                     checkAndAddImage(index + 1);
                 };
 
-                img.onerror = function() {
+                img.onerror = function () {
                     // 해당 확장자가 없으면 다음 확장자로 시도
                     extIndex++;
                     tryNextExtension();
@@ -145,5 +145,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1번 이미지부터 차례대로 탐색 시작
         checkAndAddImage(1);
+    }
+
+    // 7. Contact Form Phone Verification & UX Improvements
+    const inquiryForm = document.querySelector('.inquiry-form');
+    if (inquiryForm) {
+        // Enforce numeric input & Auto-focus next input when max length is reached within the same group
+        const phoneGroups = inquiryForm.querySelectorAll('.phone-inputs');
+        phoneGroups.forEach(group => {
+            const inputs = group.querySelectorAll('input');
+            inputs.forEach((input, index) => {
+                // Limit to numbers only
+                input.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    
+                    // Auto-tab to next input within the group if max length is reached
+                    if (e.target.value.length >= e.target.maxLength) {
+                        const nextInput = inputs[index + 1];
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+                });
+            });
+        });
+
+        // Validate that both phone numbers match on form submission
+        inquiryForm.addEventListener('submit', (e) => {
+            const phone1 = inquiryForm.querySelector('input[name="phone1"]').value.trim();
+            const phone2 = inquiryForm.querySelector('input[name="phone2"]').value.trim();
+            const phone3 = inquiryForm.querySelector('input[name="phone3"]').value.trim();
+            
+            const confirm1 = inquiryForm.querySelector('input[name="phone_confirm1"]').value.trim();
+            const confirm2 = inquiryForm.querySelector('input[name="phone_confirm2"]').value.trim();
+            const confirm3 = inquiryForm.querySelector('input[name="phone_confirm3"]').value.trim();
+            
+            const fullPhone = `${phone1}-${phone2}-${phone3}`;
+            const fullConfirm = `${confirm1}-${confirm2}-${confirm3}`;
+            
+            if (fullPhone !== fullConfirm) {
+                e.preventDefault();
+                alert('입력하신 연락처와 연락처 확인 번호가 일치하지 않습니다. 다시 확인해 주세요.');
+                inquiryForm.querySelector('input[name="phone_confirm1"]').focus();
+            }
+        });
     }
 });
