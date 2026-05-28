@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김도영 특수청소 - 위기에서 일상으로</title>
+    <style>
+        /* 전역 폰트 및 리셋 */
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-color: #050505; /* 전체 배경: 아주 깊은 블랙 */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* 공통 레드 포인트 색상: #ef4444 (강렬한 레드) */
+
+        /* ================= 1. 히어로 메인 섹션 ================= */
+        .hero-main-section {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            min-height: 700px;
+            /* 배경 이미지 주소를 아래에 넣으세요 */
+            background-image: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.95)), url('방호복_배경_이미지_주소.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content-wrapper { z-index: 2; max-width: 900px; padding: 0 20px; }
+        .hero-trust-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.15); /* 붉은빛 반투명 */
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ef4444; /* 검빨 컨셉의 레드 */
+            margin-bottom: 25px;
+        }
+        .hero-main-title { font-size: 52px; font-weight: 900; line-height: 1.3; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .hero-sub-title { font-size: 18px; color: #a3a3a3; line-height: 1.6; margin-bottom: 40px; }
+        .hero-keyword-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 50px; }
+        .keyword-item { background: #111; border: 1px solid #333; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
+        .hero-call-btn {
+            display: inline-block;
+            background-color: #dc2626; /* 딥 레드 */
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 800;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
+            transition: all 0.3s ease;
+        }
+        .hero-call-btn:hover { background-color: #ef4444; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(239, 68, 68, 0.7); }
+
+        /* ================= 2. 신뢰도 배너 ================= */
+        .trust-badge-container-custom {
+            display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+            background: #0f0f0f;
+            padding: 40px 20px;
+            border-top: 2px solid #ef4444;
+            border-bottom: 1px solid #222;
+        }
+        .trust-badge-text-area { margin-right: 50px; max-width: 400px; }
+        .trust-badge-title { font-size: 26px; font-weight: 800; color: #ef4444; margin-bottom: 10px; }
+        .trust-badge-desc { font-size: 15px; color: #a3a3a3; line-height: 1.6; }
+        .trust-badge-icons { display: flex; gap: 20px; }
+        .trust-item { background-color: #171717; border: 1px solid #262626; border-radius: 8px; padding: 20px; text-align: center; width: 120px; }
+        .trust-icon-circle { width: 50px; height: 50px; background-color: #ef4444; border-radius: 50%; margin: 0 auto 15px auto; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 20px; color: #fff;}
+        .trust-item-text { font-size: 14px; font-weight: 600; }
+
+        /* ================= 3. CEO 메시지 (다크모드) ================= */
+        .ceo-message-section { background-color: #0a0a0a; padding: 100px 20px; }
+        .ceo-container { max-width: 1000px; margin: 0 auto; display: flex; gap: 60px; align-items: center; }
+        .ceo-visual-area { flex: 1; position: relative; }
+        .ceo-photo { width: 100%; border-radius: 12px; border: 1px solid #333; }
+        .police-award-badge {
+            position: absolute; bottom: -20px; right: -20px;
+            background-color: #000; padding: 20px 25px; border-radius: 8px;
+            border-left: 5px solid #ef4444; /* 검빨 포인트 */
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.2);
+        }
+        .badge-top { font-size: 13px; color: #a3a3a3; margin-bottom: 5px; }
+        .badge-bottom { font-size: 18px; font-weight: 700; color: #fff;}
+        .ceo-text-area { flex: 1.2; }
+        .label-text { color: #ef4444; font-weight: 800; font-size: 15px; margin-bottom: 15px; letter-spacing: 1px; }
+        .main-title { font-size: 34px; font-weight: 800; line-height: 1.4; margin-bottom: 30px; }
+        .desc-text { font-size: 16px; line-height: 1.8; color: #a3a3a3; margin-bottom: 20px; }
+        .ceo-signature { margin-top: 40px; font-size: 18px; font-weight: 700; color: #fff; text-align: right; border-top: 1px solid #333; padding-top: 20px; }
+
+        /* ================= 4. 기업 이념 및 원칙 ================= */
+        .philosophy-section { background-color: #050505; padding: 100px 20px; text-align: center; }
+        .philosophy-top-text { color: #ef4444; font-weight: 800; font-size: 16px; letter-spacing: 2px; margin-bottom: 15px; }
+        .philosophy-main-title { font-size: 42px; font-weight: 900; margin-bottom: 70px; }
+        .philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .philosophy-card { background: #111; padding: 50px 30px; border-radius: 12px; border-top: 4px solid #333; transition: all 0.3s ease; }
+        .philosophy-card:hover { transform: translateY(-10px); border-top-color: #ef4444; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.15); }
+        .philosophy-keyword { font-size: 30px; font-weight: 800; margin-bottom: 20px; position: relative; display: inline-block; }
+        .philosophy-keyword::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 30px; height: 3px; background-color: #ef4444; }
+        .philosophy-desc { font-size: 16px; color: #a3a3a3; line-height: 1.6; margin-top: 25px; }
+
+        /* ================= 5. 서비스 안내 ================= */
+        .kims-service-section { background-color: #0a0a0a; padding: 100px 20px; border-top: 1px solid #1a1a1a; }
+        .kims-service-header { text-align: center; margin-bottom: 60px; }
+        .kims-service-title { font-size: 38px; font-weight: 800; margin-bottom: 15px; }
+        .kims-service-subtitle { font-size: 17px; color: #888; }
+        .kims-service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .kims-service-card { background-color: #111; border: 1px solid #222; border-radius: 12px; padding: 40px 30px; text-align: center; transition: all 0.3s; }
+        .kims-service-card:hover { border-color: #ef4444; background-color: #150505; }
+        .kims-card-title { font-size: 22px; font-weight: 700; color: #ef4444; margin-bottom: 15px; }
+        .kims-card-desc { font-size: 15px; line-height: 1.6; color: #a3a3a3; }
+
+        /* ================= 6. 파트너 로고 롤링 ================= */
+        .logo-slider-container { width: 100%; overflow: hidden; background-color: #050505; padding: 60px 0; border-top: 1px solid #222; }
+        .logo-slider-title { text-align: center; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 40px; }
+        .logo-track { display: flex; width: calc(300px * 20); animation: scrollLogos 50s linear infinite; }
+        .logo-slide { width: 300px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; padding: 0 40px; }
+        .logo-slide img { max-width: 100%; max-height: 70px; object-fit: contain; filter: grayscale(100%) brightness(200%); opacity: 0.6; transition: 0.3s; }
+        .logo-slide img:hover { filter: grayscale(0%) brightness(100%); opacity: 1; }
+        @keyframes scrollLogos { 0% { transform: translateX(0); } 100% { transform: translateX(-3000px); } }
+
+        /* ================= 7. 하단 연락처 ================= */
+        .kims-contact-section { padding: 80px 20px; background-color: #0a0a0a; display: flex; justify-content: center; }
+        .kims-contact-info-box {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 16px; padding: 50px; max-width: 800px; width: 100%; text-align: center;
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.2);
+        }
+        .contact-label { background-color: rgba(0,0,0,0.3); display: inline-block; padding: 8px 20px; border-radius: 30px; font-weight: 700; margin-bottom: 25px; }
+        .contact-main-text { font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 40px; }
+        .phone-number { font-size: 48px; font-weight: 900; color: #fff; text-decoration: none; display: block; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .direct-number { font-size: 26px; font-weight: 700; color: #fca5a5; text-decoration: none; display: block; }
+        .contact-notice { margin-top: 40px; font-size: 15px; color: #fecaca; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 25px; }
+
+        /* 모바일 반응형 처리 */
+        @media (max-width: 768px) {
+            .hero-main-title { font-size: 32px; }
+            .trust-badge-container-custom { flex-direction: column; text-align: center; }
+            .trust-badge-text-area { margin-right: 0; margin-bottom: 30px; }
+            .ceo-container { flex-direction: column; }
+            .philosophy-grid, .kims-service-grid { grid-template-columns: 1fr; }
+            .contact-main-text { font-size: 26px; }
+            .phone-number { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-main-section">
+        <div class="hero-content-wrapper">
+            <div class="hero-trust-badge">
+                🏆 경찰청 표창 수여 및 SBS·KBS 자문/제작지원
+            </div>
+            <div class="hero-main-title">
+                위기에서 일상으로,<br>가장 힘든 순간을 완벽히 지워드립니다
+            </div>
+            <div class="hero-sub-title">
+                수많은 관공서와 방송이 검증한 기술력. 어떠한 참혹한 현장이라도<br>100% 비밀 보장 원칙 아래 24시간 언제든 흔적 없이 복구합니다.
+            </div>
+            <div class="hero-keyword-grid">
+                <div class="keyword-item">고독사</div>
+                <div class="keyword-item">쓰레기집</div>
+                <div class="keyword-item">강력범죄현장</div>
+                <div class="keyword-item">혈흔제거</div>
+                <div class="keyword-item">유품정리</div>
+            </div>
+            <a href="tel:1800-1975" class="hero-call-btn">📞 긴급출동 상담 1800-1975</a>
+        </div>
+    </div>
+
+    <div class="trust-badge-container-custom">
+        <div class="trust-badge-text-area">
+            <div class="trust-badge-title">관공서가 검증한 확실한 전문성</div>
+            <div class="trust-badge-desc">무책임한 과장 광고, 외주 인력 떠넘기기 등 타 업체의 관행을 절대 하지 않습니다. 오직 훈련된 전문 인력이 통제합니다.</div>
+        </div>
+        <div class="trust-badge-icons">
+            <div class="trust-item">
+                <div class="trust-icon-circle">인증</div>
+                <div class="trust-item-text">경찰청 표창</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-circle">보장</div>
+                <div class="trust-item-text">100% 비밀보장</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-circle">전문</div>
+                <div class="trust-item-text">대표 직접출동</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ceo-message-section">
+        <div class="ceo-container">
+            <div class="ceo-visual-area">
+                <img src="https://i.postimg.cc/여기에_대표님_사진주소.jpg" alt="김도영 대표" class="ceo-photo">
+                <div class="police-award-badge">
+                    <div class="badge-top">제79주년 경찰의 날 기념</div>
+                    <div class="badge-bottom">광주경찰청장 감사장 수여</div>
+                </div>
+            </div>
+            <div class="ceo-text-area">
+                <div class="label-text">CEO MESSAGE</div>
+                <div class="main-title">누구에게도 말 못 할 고민,<br>가족의 마음으로 지워드립니다.</div>
+                <div class="desc-text">
+                    특수청소는 단순히 오염물을 치우는 작업이 아닙니다. 남겨진 분들의 슬픔을 위로하고, 참혹한 현장을 다시 평온한 일상으로 되돌리는 엄숙하고 책임감 있는 과정입니다.
+                </div>
+                <div class="desc-text">
+                    경찰청 협력업체로서 강력범죄 피해 현장, 고독사 등 가장 극단적인 상황 속에서도 변함없는 전문성과 100% 비밀 보장 원칙을 지켜왔습니다. 어떠한 현장이라도 대표인 제가 직접 출동하여 완벽하게 복원할 것을 약속드립니다.
+                </div>
+                <div class="ceo-signature">
+                    김도영특수청소 대표 김도영 올림
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="philosophy-section">
+        <div class="philosophy-top-text">OUR PROMISE</div>
+        <div class="philosophy-main-title">완벽한 복원을 위한 3가지 원칙</div>
+        <div class="philosophy-grid">
+            <div class="philosophy-card">
+                <div class="philosophy-keyword">대표 직접출동</div>
+                <div class="philosophy-desc">상담만 하고 빠지는 하청 업체와 다릅니다. 책임자인 대표가 직접 현장을 통제하고 완벽하게 지휘합니다.</div>
+            </div>
+            <div class="philosophy-card">
+                <div class="philosophy-keyword">24시간 신속대응</div>
+                <div class="philosophy-desc">위기 상황에 주말, 밤낮은 없습니다. 대한민국 전 지역 어디든 긴급 출동하여 문제를 즉시 해결합니다.</div>
+            </div>
+            <div class="philosophy-card">
+                <div class="philosophy-keyword">추가비용 ZERO</div>
+                <div class="philosophy-desc">거리가 멀다고 부르는 게 값이 되지 않습니다. 투명한 절차를 통해 지역에 따른 추가 비용을 일절 받지 않습니다.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kims-service-section">
+        <div class="kims-service-header">
+            <div class="kims-service-title">전문 서비스 안내</div>
+            <div class="kims-service-subtitle">어떠한 극한의 현장도 김도영특수청소의 독보적 기술력으로 복원합니다.</div>
+        </div>
+        <div class="kims-service-grid">
+            <div class="kims-service-card">
+                <div class="kims-card-title">특수청소</div>
+                <div class="kims-card-desc">고독사, 자살, 강력범죄현장, 혈흔제거, 냄새제거, 폐기물처리 전문 복원</div>
+            </div>
+            <div class="kims-service-card">
+                <div class="kims-card-title">쓰레기집</div>
+                <div class="kims-card-desc">방치된 쓰레기집 대청소, 완벽한 악취 제거 및 위생적인 정리수납 솔루션</div>
+            </div>
+            <div class="kims-service-card">
+                <div class="kims-card-title">화재/침수</div>
+                <div class="kims-card-desc">화재 그을음 제거, 오수 침수 복구, 집수정 및 정화조 청소 완벽 대응</div>
+            </div>
+            <div class="kims-service-card">
+                <div class="kims-card-title">유품정리</div>
+                <div class="kims-card-desc">고인의 소중한 생전 물건 분류, 예우를 갖춘 정리 및 빈집 원상복구</div>
+            </div>
+            <div class="kims-service-card">
+                <div class="kims-card-title">동물사체처리</div>
+                <div class="kims-card-desc">악취의 원인이 되는 숨은 공간 내시경 탐지 및 완벽한 사체 수거/소독</div>
+            </div>
+            <div class="kims-service-card">
+                <div class="kims-card-title">기타 극한청소</div>
+                <div class="kims-card-desc">일반 청소업체가 포기한 모든 형태의 특수 오염 및 극한 환경 청소 지원</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="logo-slider-container">
+        <div class="logo-slider-title">공공기관의 엄격한 기준을 충족하는 검증된 전문성</div>
+        <div class="logo-track">
+            <div class="logo-slide"><img src="https://i.postimg.cc/X7ScLfCL/gyeong-ginambugyeongchalcheong.png" alt="경찰청"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/YSw5wGZR/gwangjugyeongchalcheong.png" alt="광주경찰청"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/3J4V4FHZ/gwangjugwang-yeogsi.png" alt="광주시"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/1t5PLCjz/rmdkf.png" alt="그알"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/W1LV2bHn/chujeog60bun.png" alt="추적60분"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/X7ScLfCL/gyeong-ginambugyeongchalcheong.png" alt="경찰청"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/YSw5wGZR/gwangjugyeongchalcheong.png" alt="광주경찰청"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/3J4V4FHZ/gwangjugwang-yeogsi.png" alt="광주시"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/1t5PLCjz/rmdkf.png" alt="그알"></div>
+            <div class="logo-slide"><img src="https://i.postimg.cc/W1LV2bHn/chujeog60bun.png" alt="추적60분"></div>
+        </div>
+    </div>
+
+    <div class="kims-contact-section">
+        <div class="kims-contact-info-box">
+            <div class="contact-label">24시간 긴급출동 대기</div>
+            <div class="contact-main-text">망설이지 말고 연락주세요.<br>가장 빠르고 확실하게 해결해 드립니다.</div>
+            <a href="tel:1800-1975" class="phone-number">📞 1800-1975</a>
+            <a href="tel:010-5544-0266" class="direct-number">현장 직통: 010-5544-0266</a>
+            <div class="contact-notice">
+                * 100% 비밀 보장 원칙으로 상담이 진행됩니다.<br>
+                * 현장 사진을 직통 번호로 먼저 남겨주시면 정확한 가견적 안내가 가능합니다.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

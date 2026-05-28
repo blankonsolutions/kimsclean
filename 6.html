@@ -1,0 +1,110 @@
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* 서비스 안내 전체 배경 (다시 어두운 톤으로 시선 집중) */
+.kims-service-section {
+    background-color: #111827; /* 고급스러운 다크 네이비 */
+    padding: 100px 20px;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.kims-service-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.kims-service-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+
+.kims-service-subtitle {
+    font-size: 16px;
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+/* 3x2 그리드 배열 */
+.kims-service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 개별 서비스 카드 */
+.kims-service-card {
+    background-color: #1f2937; /* 배경보다 살짝 밝은 카드 색상 */
+    border: 1px solid #374151;
+    border-radius: 12px;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.kims-service-card:hover {
+    transform: translateY(-8px);
+    border-color: #ef4444; /* 마우스 올렸을 때 붉은색 포인트 */
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.15);
+}
+
+.kims-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #eab308; /* 기존 노란색을 고급스러운 골드로 톤다운 */
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.kims-card-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d1d5db;
+    word-break: keep-all;
+}
+
+/* 모바일 대응 (세로로 길게 배치) */
+@media (max-width: 768px) {
+    .kims-service-grid { grid-template-columns: 1fr; }
+    .kims-service-title { font-size: 28px; }
+    .kims-service-card { padding: 30px 20px; }
+}
+</style>
+
+<div class="kims-service-section">
+    <div class="kims-service-header">
+        <div class="kims-service-title">전문 서비스 안내</div>
+        <div class="kims-service-subtitle">어떠한 극한의 현장도 김도영특수청소의 기술력으로 완벽히 복원합니다.</div>
+    </div>
+
+    <div class="kims-service-grid">
+        <div class="kims-service-card">
+            <div class="kims-card-title">특수청소</div>
+            <div class="kims-card-desc">고독사, 자살, 강력범죄현장, 혈흔제거, 냄새제거, 폐기물처리</div>
+        </div>
+        <div class="kims-service-card">
+            <div class="kims-card-title">쓰레기집</div>
+            <div class="kims-card-desc">쓰레기로 가득한 집, 쓰레기 처리 및 대청소, 정리수납 솔루션</div>
+        </div>
+        <div class="kims-service-card">
+            <div class="kims-card-title">화재/침수</div>
+            <div class="kims-card-desc">화재현장 그을음제거 및 복구, 침수현장 침수복구 및 폐기물처리, 집수정 청소 및 정화조청소, 오수침수복구</div>
+        </div>
+        <div class="kims-service-card">
+            <div class="kims-card-title">유품정리</div>
+            <div class="kims-card-desc">고인의 생전 물건 정리 및 소각, 빈집정리 등 진행가능.</div>
+        </div>
+        <div class="kims-service-card">
+            <div class="kims-card-title">동물사체처리</div>
+            <div class="kims-card-desc">고양이, 강아지, 쥐 등 여러가지 상황으로 인해 구석공간 내시경 확인 및 사체처리가 필요한 경우.</div>
+        </div>
+        <div class="kims-service-card">
+            <div class="kims-card-title">기타특수청소</div>
+            <div class="kims-card-desc">직접하기 힘든 청소나 정리, 극한청소 등 일반 청소업체에서 진행 불가한 청소.</div>
+        </div>
+    </div>
+</div>
