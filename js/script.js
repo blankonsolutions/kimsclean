@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Limit to numbers only
                 input.addEventListener('input', (e) => {
                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                    
+
                     // Auto-tab to next input within the group if max length is reached
                     if (e.target.value.length >= e.target.maxLength) {
                         const nextInput = inputs[index + 1];
@@ -175,19 +175,82 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone1 = inquiryForm.querySelector('input[name="phone1"]').value.trim();
             const phone2 = inquiryForm.querySelector('input[name="phone2"]').value.trim();
             const phone3 = inquiryForm.querySelector('input[name="phone3"]').value.trim();
-            
+
             const confirm1 = inquiryForm.querySelector('input[name="phone_confirm1"]').value.trim();
             const confirm2 = inquiryForm.querySelector('input[name="phone_confirm2"]').value.trim();
             const confirm3 = inquiryForm.querySelector('input[name="phone_confirm3"]').value.trim();
-            
+
             const fullPhone = `${phone1}-${phone2}-${phone3}`;
             const fullConfirm = `${confirm1}-${confirm2}-${confirm3}`;
-            
+
             if (fullPhone !== fullConfirm) {
                 e.preventDefault();
                 alert('입력하신 연락처와 연락처 확인 번호가 일치하지 않습니다. 다시 확인해 주세요.');
                 inquiryForm.querySelector('input[name="phone_confirm1"]').focus();
             }
+        });
+    }
+
+    // 8. Media Play Simulation (In-place Ken Burns motion)
+    const mediaVideos = document.querySelectorAll('.media-video');
+
+    if (mediaVideos.length > 0) {
+        mediaVideos.forEach((videoContainer) => {
+            const playBtn = videoContainer.querySelector('.play-btn');
+            
+            const startSimulation = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Avoid double triggering
+                if (videoContainer.classList.contains('is-moving')) return;
+                
+                videoContainer.classList.add('is-moving');
+                
+                // Stop and reset after 3 seconds
+                setTimeout(() => {
+                    videoContainer.classList.remove('is-moving');
+                }, 3000);
+            };
+
+            if (playBtn) {
+                playBtn.addEventListener('click', startSimulation);
+            }
+            videoContainer.addEventListener('click', startSimulation);
+        });
+    }
+
+    // 9. PC Version Toggle
+    const pcViewBtn = document.getElementById('pcViewBtn');
+    if (pcViewBtn) {
+        const viewport = document.querySelector('meta[name="viewport"]');
+
+        const applyPCVersion = () => {
+            viewport.setAttribute('content', 'width=1200, initial-scale=0.3, maximum-scale=5.0, user-scalable=yes');
+            pcViewBtn.innerHTML = '<i class="ri-phone-line"></i> 모바일 버전으로 보기';
+        };
+
+        const applyMobileVersion = () => {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            pcViewBtn.innerHTML = '<i class="ri-computer-line"></i> PC 버전으로 보기';
+        };
+
+        // Check stored preference on load
+        if (localStorage.getItem('prefer-pc-version') === 'true') {
+            applyPCVersion();
+        }
+
+        pcViewBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isPC = localStorage.getItem('prefer-pc-version') === 'true';
+            if (isPC) {
+                applyMobileVersion();
+                localStorage.setItem('prefer-pc-version', 'false');
+            } else {
+                applyPCVersion();
+                localStorage.setItem('prefer-pc-version', 'true');
+            }
+            window.scrollTo(0, 0);
         });
     }
 });
