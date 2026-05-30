@@ -223,34 +223,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // 9. PC Version Toggle
     const pcViewBtn = document.getElementById('pcViewBtn');
     if (pcViewBtn) {
-        const viewport = document.querySelector('meta[name="viewport"]');
-
-        const applyPCVersion = () => {
-            viewport.setAttribute('content', 'width=1200, initial-scale=0.3, maximum-scale=5.0, user-scalable=yes');
+        // Update button text depending on current preference on load
+        const isPC = localStorage.getItem('prefer-pc-version') === 'true';
+        if (isPC) {
             pcViewBtn.innerHTML = '<i class="ri-phone-line"></i> 모바일 버전으로 보기';
-        };
-
-        const applyMobileVersion = () => {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+        } else {
             pcViewBtn.innerHTML = '<i class="ri-computer-line"></i> PC 버전으로 보기';
-        };
-
-        // Check stored preference on load
-        if (localStorage.getItem('prefer-pc-version') === 'true') {
-            applyPCVersion();
         }
 
         pcViewBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const isPC = localStorage.getItem('prefer-pc-version') === 'true';
-            if (isPC) {
-                applyMobileVersion();
+            const currentlyPC = localStorage.getItem('prefer-pc-version') === 'true';
+            if (currentlyPC) {
                 localStorage.setItem('prefer-pc-version', 'false');
             } else {
-                applyPCVersion();
                 localStorage.setItem('prefer-pc-version', 'true');
             }
-            window.scrollTo(0, 0);
+            // Reload to apply new viewport configuration immediately
+            window.location.reload();
         });
     }
 });

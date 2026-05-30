@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김도영 특수청소 - 프리미엄 극한환경 복원 솔루션</title>
+    <meta name="viewport" id="viewportMeta" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (localStorage.getItem('prefer-pc-version') === 'true') {
+            document.getElementById('viewportMeta').setAttribute('content', 'width=1200');
+        }
+    </script>
+    <title>김도영 특수청소 - 고독사, 쓰레기집, 강력범죄 현장 전문</title>
     <meta name="description" content="고독사, 쓰레기집, 강력범죄현장 등 특수 청소 및 완벽 복원 서비스. 100% 비밀 보장, 24시간 긴급출동.">
     <!-- Open Graph (KakaoTalk, Facebook Share) -->
     <meta property="og:type" content="website">
