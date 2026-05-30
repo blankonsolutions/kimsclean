@@ -1907,3 +1907,28 @@ a.method-item {
         display: flex;
     }
 }
+
+/* Naver Blog Button Styling */
+.blog-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background-color: #2db400;
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(45, 180, 0, 0.2);
+    margin-top: 15px;
+}
+
+.blog-btn:hover {
+    background-color: #279e00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 180, 0, 0.3);
+}

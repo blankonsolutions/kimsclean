@@ -221,26 +221,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 9. PC Version Toggle
-    const pcViewBtn = document.getElementById('pcViewBtn');
-    if (pcViewBtn) {
+    const pcViewBtns = document.querySelectorAll('#pcViewBtn, #heroPcViewBtn');
+    if (pcViewBtns.length > 0) {
         // Update button text depending on current preference on load
         const isPC = localStorage.getItem('prefer-pc-version') === 'true';
-        if (isPC) {
-            pcViewBtn.innerHTML = '<i class="ri-phone-line"></i> 모바일 버전으로 보기';
-        } else {
-            pcViewBtn.innerHTML = '<i class="ri-computer-line"></i> PC 버전으로 보기';
-        }
-
-        pcViewBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const currentlyPC = localStorage.getItem('prefer-pc-version') === 'true';
-            if (currentlyPC) {
-                localStorage.setItem('prefer-pc-version', 'false');
+        pcViewBtns.forEach(btn => {
+            if (isPC) {
+                btn.innerHTML = '<i class="ri-phone-line"></i> 모바일 버전으로 보기';
             } else {
-                localStorage.setItem('prefer-pc-version', 'true');
+                btn.innerHTML = '<i class="ri-computer-line"></i> PC 버전으로 보기';
             }
-            // Reload to apply new viewport configuration immediately
-            window.location.reload();
+
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentlyPC = localStorage.getItem('prefer-pc-version') === 'true';
+                if (currentlyPC) {
+                    localStorage.setItem('prefer-pc-version', 'false');
+                } else {
+                    localStorage.setItem('prefer-pc-version', 'true');
+                }
+                // Reload to apply new viewport configuration immediately
+                window.location.reload();
+            });
         });
     }
 });
